@@ -20,8 +20,8 @@ def preprocess_text(text, remove_stop=True, stem_words=True, remove_mentions_has
     4, convert all words to lowercase
     5. stemming words, achieved, achieving, achieves, replaced by achieve.
     eg:
-    input: preprocess_text("the doctor is doctoring the  data,  does do, @@###!%!7*2435243, -_-")
-    output: ['doctor', 'doctor', 'data', 'doe']
+    input document, a string, eg. preprocess_text("the doctor is doctoring the  data,  does do, @@###!%!7*2435243, -_-")
+    output: word list, e.g. ['doctor', 'doctor', 'data', 'doe']
     """
 
     # Remove emojis
