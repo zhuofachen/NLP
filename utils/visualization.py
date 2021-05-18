@@ -1,6 +1,6 @@
 from wordcloud import WordCloud
 import matplotlib.pyplot as plt
-from cal_similarity import *
+from utils.cal_similarity import *
 from collections import Counter
 
 def make_wc(word_list):

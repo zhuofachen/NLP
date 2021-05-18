@@ -1,5 +1,5 @@
 
-
+import fastText
 import torchtext
 import re
 from sklearn.feature_extraction.text import ENGLISH_STOP_WORDS
@@ -25,24 +25,23 @@ def preprocess_text(text, remove_stop=True, stem_words=True, remove_mentions_has
     """
 
     # Remove emojis
-    # emoji_pattern = re.compile("[" "\U0001F1E0-\U0001F6FF" "]+", flags=re.UNICODE)
-    # text = emoji_pattern.sub(r"", text)
-    # text = "".join([x for x in text if x not in emoji.UNICODE_EMOJI])
-    # if remove_mentions_hashtags:
-    #     text = re.sub(r"@(\w+)", " ", text)
-    #     text = re.sub(r"#(\w+)", " ", text)
-    #     print('after remove hashtags', text)
-    # text = re.sub(r"[^\x00-\x7F]+", " ", text)
-    # # print('after remove x', text)
+    emoji_pattern = re.compile("[" "\U0001F1E0-\U0001F6FF" "]+", flags=re.UNICODE)
+    text = emoji_pattern.sub(r"", text)
+    text = "".join([x for x in text if x not in emoji.UNICODE_EMOJI])
+    if remove_mentions_hashtags:
+        text = re.sub(r"@(\w+)", " ", text)
+        text = re.sub(r"#(\w+)", " ", text)
+    text = re.sub(r"[^\x00-\x7F]+", " ", text)
 
 
+    #    remove punctuations
     regex = re.compile('[' + re.escape(string.punctuation) + '0-9\\r\\t\\n]')  # remove punctuation and numbers
     nopunct = regex.sub(" ", text.lower())  # a string
     # words = (''.join(nopunct)).split()
     words = nopunct.split()   # split into list
     if (remove_stop):
         words = [w for w in words if w not in ENGLISH_STOP_WORDS]
-        # words = [w for w in words if len(w) > 2]  # remove a,an,of etc. anything shorter
+        words = [w for w in words if len(w) >= 2]  # remove a,an,of etc. anything shorter
 
     if (stem_words):
         stemmer = PorterStemmer()

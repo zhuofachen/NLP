@@ -1,4 +1,7 @@
 # add ignore files or directories.
-dataset/
 .DS_Store
+__pycache__/
+.idea/
+dataset/
 *.csv
+packages/

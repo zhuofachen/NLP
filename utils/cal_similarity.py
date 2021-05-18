@@ -35,6 +35,12 @@ def train_word_vec(filename='../dataset/test_content.txt'):
 
 #get centroid of a particular document
 def get_centroid(text, gloves):
+    """
+
+    :param text: input a string
+    :param gloves: the encoded world vec dictionary
+    :return: the average of the word vector for all the words in the string (document).
+    """
     words_list = preprocess_text(text)
     word_vec_sum = 0
     words_count = 0
