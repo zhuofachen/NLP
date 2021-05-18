@@ -1,0 +1,4 @@
+# add ignore files or directories.
+dataset/
+.DS_Store
+*.csv
